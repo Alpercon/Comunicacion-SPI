@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Mon May 10 14:25:28 2021
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+Revision Name : maestro_FPGA
+Top-level Entity Name : MAESTRO_FPGA
+Family : MAX 10
+Total logic elements : 71
+    Total combinational functions : 46
+    Dedicated logic registers : 55
+Total registers : 55
+Total pins : 22
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
+UFM blocks : 0
+ADC blocks : 0

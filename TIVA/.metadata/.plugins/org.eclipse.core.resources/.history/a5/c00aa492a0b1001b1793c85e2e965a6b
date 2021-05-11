@@ -1,0 +1,127 @@
+#include "tm4c1294ncpdt.h"
+#include <stdint.h>
+
+//SPI Esclavo (modulo 0)
+//SPI Maestro (Modulo 2)
+
+uint8_t datosM[8] = {0};
+uint8_t datosE[8] = {0};
+uint8_t cont;
+
+void main(void){
+
+    //Se activa el modulo 0 y 2 de SSI
+    SYSCTL_RCGCSSI_R |= 0x05;
+
+    //Se va a usar el puerto A para la comunicacion SPI modulo 0, se le da reloj
+    SYSCTL_RCGCGPIO_R |= 0x01;
+
+    //Se va a usar el puerto D y para la comunicacion SPIO
+    SYSCTL_RCGCGPIO_R |= 0x08;
+
+    //Se espera a que el puerto este listo
+    while((SYSCTL_PRGPIO_R & 0x01) == 0 ){}
+
+    //Habilitar la función alterna en pines 2,3,4 y 5 del puerto
+    GPIO_PORTA_AHB_AFSEL_R |= 0x3C;
+
+    //Se asigna el puerto al controlador SPI
+    GPIO_PORTA_AHB_PCTL_R |= 0x00FFFF00;
+
+    //Se habilitan los pines asociados del puerto A
+    GPIO_PORTA_AHB_DEN_R |= 0x3C;
+
+    /*PARA EL PUERTO D*/
+
+    //Habilitar funcion alterna en pines 0,1,2,3 del puerto
+    GPIO_PORTD_AHB_AFSEL_R |= 0x0F;
+
+    //Se asigna el puerto al controlador SPI
+    GPIO_PORTD_AHB_PCTL_R |= 0x0000FFFF;
+
+    //Se habilitan los pines asociados del puerto d
+    GPIO_PORTD_AHB_DEN_R |= 0x0F;
+
+    //Opcional: agregar PUll-up/Down
+
+
+    /********************
+     * CONFIGURACION MAESTRO
+     */
+
+    //Configuracion como maestro
+    SSI2_CR1_R = 0x00000000;
+
+    //Generación de bit rate de 1 MHz
+    SSI2_CPSR_R = 8;
+
+    /*
+         * Formato 'Freescale SPI'
+         * Se define polaridad y fase del reloj
+         * 8 bits de trama
+         */
+    SSI2_CR0_R |= 0x00000107;
+
+    //SSI2_CR1_R |= 0x00000100;
+
+
+    //SI NO FUNCIONA CHECAR DIRECCIONALIDAD DEL MODULO (por defecto tx)
+
+
+
+
+
+
+
+    //Configuración como ESCLAVO
+    SSI0_CR1_R |= 0x04;
+
+    //La siguiente configuración genera un 'bit rate' para 1 MHz
+    SSI0_CPSR_R |= 0x08;//16
+
+    /*
+     * Formato 'Freescale SPI'
+     * Se define polaridad y fase del reloj
+     * 8 bits de trama
+     */
+    SSI0_CR0_R |= 0x0107;
+
+    //SI NO FUNCIONA CHECAR DIRECCIONALIDAD DEL MODULO (por defecto tx)
+
+
+    //Se habilitan los modulos
+    SSI0_CR1_R |= 0x02;
+    SSI2_CR1_R |= 0x02;
+
+    //llenar fifo del esclavo
+    for(cont = 48; cont <= 55; cont++){
+
+        SSI0_DR_R = cont;
+    }
+
+
+    //Transaccion 1
+
+    /*for(cont = 0; cont < 8; cont++){
+        SSI2_DR_R = cont+1;
+
+        while(!(SSI2_SR_R & 0x04)){}
+
+        datosM[cont] = SSI2_DR_R;
+        datosE[cont] = SSI0_DR_R;
+
+    }*/
+
+
+
+    while(1){
+
+
+
+    }
+
+
+
+
+
+}

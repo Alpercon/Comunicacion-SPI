@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Gamma/Desktop/Trabajo Servicio/maestro_FPGA/simulation/modelsim
+Emaestro_fpga
+w1620674524
+DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8C:/Users/Gamma/Desktop/Trabajo Servicio/maestro_FPGA/maestro_FPGA.vhd
+FC:/Users/Gamma/Desktop/Trabajo Servicio/maestro_FPGA/maestro_FPGA.vhd
+l0
+L4
+VSYK1nRNa6c6TFfUi`aan:2
+!s100 >[gL`WX[nlaC;MSf:Zo9o2
+OV;C;10.5b;63
+31
+!s110 1620684249
+!i10b 1
+!s108 1620684248.000000
+!s90 -reportprogress|300|-93|-work|work|C:/Users/Gamma/Desktop/Trabajo Servicio/maestro_FPGA/maestro_FPGA.vhd|
+!s107 C:/Users/Gamma/Desktop/Trabajo Servicio/maestro_FPGA/maestro_FPGA.vhd|
+!i113 1
+o-93 -work work
+tExplicit 1 CvgOpt 0
